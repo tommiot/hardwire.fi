@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hardwire Oy | Tommi Otsavaara, Electronics Design Engineer</title>
+<meta name="description" content="Hardwire Oy is an independent electronics design consultancy in Vantaa, Finland, run by Tommi Otsavaara. High-speed digital PCB design, analog and mixed-signal circuits, prototypes and production support.">
+<script>
+  // Set language before first paint: saved choice, else browser language
+  (function () {
+    var l = "en";
+    try { l = localStorage.getItem("lang") || ""; } catch (e) {}
+    if (l !== "fi" && l !== "en") l = (navigator.language || "").toLowerCase().indexOf("fi") === 0 ? "fi" : "en";
+    document.documentElement.lang = l;
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EDEFEA;
+    --ink: #10303F;
+    --muted: #465F6B;
+    --line: #B6C2C0;
+    --panel: #123B4F;
+    --panel-ink: #DCE7E6;
+    --trace: #F2B33D;
+    --btn: #F0A81F;
+    --btn-ink: #10303F;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0C1A22;
+      --ink: #E4ECEA;
+      --muted: #97ABB2;
+      --line: #27414D;
+      --panel: #07131A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0C1A22;
+    --ink: #E4ECEA;
+    --muted: #97ABB2;
+    --line: #27414D;
+    --panel: #07131A;
+  }
+
+  html[lang="en"] .fi, html[lang="fi"] .en { display: none; }
+
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.25rem; }
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--btn); outline-offset: 3px; }
+
+  h1, h2, .brand, .btn, nav a, label, .lang button {
+    font-family: "Archivo", "Arial Narrow", Arial, sans-serif;
+  }
+
+  /* Header */
+  header.site { padding: 1.5rem 0; }
+  header.site .wrap { display: flex; justify-content: space-between; align-items: center; gap: 1rem 2rem; flex-wrap: wrap; }
+  .brand { font-weight: 800; font-stretch: 125%; font-size: 1.35rem; text-decoration: none; letter-spacing: -0.01em; }
+  .head-right { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
+  nav { display: flex; gap: 1.5rem; }
+  nav a { font-weight: 600; font-size: 1rem; text-decoration: none; }
+  nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
+  .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .lang button {
+    font: inherit; font-size: 0.9rem; font-weight: 700;
+    background: transparent; color: var(--ink);
+    border: 0; padding: 0.3rem 0.7rem; cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+  /* Hero */
+  .hero { padding: 3rem 0 4.5rem; }
+  .hero .wrap { display: block; }
+  .hero h1 { max-width: 16ch; }
+  h1 {
+    font-weight: 800;
+    font-stretch: 112%;
+    font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    margin: 0 0 1.5rem;
+    text-wrap: balance;
+    hyphens: manual;
+    overflow-wrap: break-word;
+  }
+  .lede { max-width: 34rem; margin: 0 0 2rem; color: var(--muted); }
+  .btn {
+    display: inline-block;
+    background: var(--btn);
+    color: var(--btn-ink);
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 0.85rem 1.4rem;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  .btn:hover { filter: brightness(1.06); text-decoration: none; }
+
+  /* Sections */
+  section.block { border-top: 1px solid var(--line); padding: 4rem 0; }
+  h2 {
+    font-weight: 800;
+    font-stretch: 108%;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 3rem; }
+  .split p { margin: 0 0 1.1rem; max-width: 40rem; }
+  .split p:last-child { margin-bottom: 0; }
+
+
+  address { font-style: normal; }
+  .split p.contact-name { font-family: "Archivo", "Arial Narrow", Arial, sans-serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 0.25rem; }
+  .contact-mail { font-family: "Archivo", Arial, sans-serif; font-weight: 700; font-stretch: 110%; font-size: clamp(1.4rem, 3vw, 2.1rem); word-break: break-word; }
+  .facts { color: var(--muted); font-size: 1rem; margin-top: 1.5rem; }
+
+  footer.site { border-top: 1px solid var(--line); padding: 1.75rem 0 2.5rem; color: var(--muted); font-size: 0.95rem; }
+
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+    .split { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+    section.block { padding: 3rem 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Hardwire Oy</a>
+    <div class="head-right">
+      <nav aria-label="Main">
+        <a href="#services"><span class="en">Services</span><span class="fi">Palvelut</span></a>
+        <a href="#about"><span class="en">About</span><span class="fi">Tietoa</span></a>
+        <a href="#contact"><span class="en">Contact</span><span class="fi">Yhteys</span></a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language / Kieli">
+        <button type="button" data-lang="fi" lang="fi" aria-pressed="false">FI</button>
+        <button type="button" data-lang="en" lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>
+          <span class="en">Electronics design for products that have to ship.</span>
+          <span class="fi">Elektroniikkasuunnittelua tuotteille, jotka on saatava markkinoille.</span>
+        </h1>
+        <p class="lede">
+          <span class="en">Hardwire is an independent electronics design consultancy in Vantaa, Finland. Available for complete product development or as part of a client's engineering team.</span>
+          <span class="fi">Hardwire on itsenäinen elektroniikkasuunnittelun konsulttiyritys Vantaalta. Käytettävissä kokonaisvaltaiseen tuotekehitykseen tai osaksi asiakkaan suunnittelutiimiä.</span>
+        </p>
+        <a class="btn" href="#contact"><span class="en">Get in touch</span><span class="fi">Ota yhteyttä</span></a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="block" id="services">
+    <div class="wrap split">
+      <h2><span class="en">What I do</span><span class="fi">Palvelut</span></h2>
+      <div>
+        <p>
+          <span class="en">I provide circuit design and PCB layout services using Altium Designer, from product brief to production-ready boards. My work covers analog, digital and mixed-signal designs, including complex high-speed multilayer boards. I also handle prototype assembly and debugging, arrange prototype manufacturing where required, and support the transition to mass production.</span>
+          <span class="fi">Tarjoan piirisuunnittelu- ja piirilevysuunnittelupalveluja Altium Designerilla tuotekuvauksesta tuotantovalmiisiin levyihin. Työhöni kuuluvat analogia-, digitaali- ja sekasignaalisuunnitelmat, myös monimutkaiset nopeat monikerrospiirilevyt. Hoidan myös prototyyppien kokoonpanon ja vianetsinnän, järjestän tarvittaessa prototyyppien valmistuksen ja tuen siirtymistä sarjatuotantoon.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap split">
+      <h2><span class="en">About</span><span class="fi">Tietoa</span></h2>
+      <div>
+        <p>
+          <span class="en">I am Tommi Otsavaara, an electronics design engineer and the founder of Hardwire Oy. I have worked at Darkglass Electronics, Marshall Amplification and Neural DSP Technologies, and co-founded Citadel Electronics. My work has focused on guitar pedals and amplifiers, with a particular strength in high-speed digital PCB design. I take on technically demanding projects, including work that requires new technologies or methods.</span>
+          <span class="fi">Olen Tommi Otsavaara, elektroniikkasuunnittelija ja Hardwire Oy:n perustaja. Olen työskennellyt yrityksissä Darkglass Electronics, Marshall Amplification ja Neural DSP Technologies, ja olen yksi Citadel Electronicsin perustajista. Työni on keskittynyt kitarapedaaleihin ja vahvistimiin, ja erityinen vahvuuteni on nopeiden digitaalisten piirilevyjen suunnittelu. Otan vastaan teknisesti vaativia projekteja, myös sellaisia, jotka edellyttävät uusia teknologioita tai menetelmiä.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap split">
+      <h2><span class="en">Contact</span><span class="fi">Yhteys</span></h2>
+      <div>
+        <p>
+          <span class="en">Tell me what you're building and when you need it. I'll reply with questions or a first idea of how to approach it.</span>
+          <span class="fi">Kerro, mitä olet rakentamassa ja milloin sitä tarvitaan. Vastaan kysymyksillä tai ensimmäisellä ehdotuksella siitä, miten asiaan voisi lähestyä.</span>
+        </p>
+                <p class="contact-name">Tommi Otsavaara, Hardwire Oy</p>
+        <p><a class="contact-mail" href="mailto:tommi.otsavaara@hardwire.fi?subject=Project%20inquiry%20%2F%20Projektikysely">tommi.otsavaara@hardwire.fi</a></p>
+        <address class="facts">
+          Vantaa, Finland
+        </address>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">© <span id="year">2026</span> Hardwire Oy</div>
+</footer>
+
+<script>
+(function () {
+  var text = {
+    en: {
+      title: "Hardwire Oy | Tommi Otsavaara, Electronics Design Engineer",
+      desc: "Hardwire Oy is an independent electronics design consultancy in Vantaa, Finland, run by Tommi Otsavaara. High-speed digital PCB design, analog and mixed-signal circuits, prototypes and production support."
+    },
+    fi: {
+      title: "Hardwire Oy | Tommi Otsavaara, elektroniikkasuunnittelija",
+      desc: "Hardwire Oy on Tommi Otsavaaran itsenäinen elektroniikkasuunnittelun konsulttiyritys Vantaalla. Nopeat digitaaliset piirilevyt, analogia- ja sekasignaalipiirit, prototyypit ja sarjatuotannon tuki."
+    }
+  };
+  var buttons = document.querySelectorAll(".lang button");
+  function setLang(l, save) {
+    document.documentElement.lang = l;
+    document.title = text[l].title;
+    var meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", text[l].desc);
+    buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === l)); });
+    if (save) { try { localStorage.setItem("lang", l); } catch (e) {} }
+  }
+  buttons.forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang"), true); });
+  });
+  setLang(document.documentElement.lang === "fi" ? "fi" : "en", false);
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
